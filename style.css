@@ -1,0 +1,370 @@
+:root {
+    --bg: #0f172a;
+    --sidebar: #1e293b;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --primary: #06b6d4;
+    --radius: 12px;
+}
+
+/* ---------- Base Reset ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ---------- App Layout ---------- */
+.app {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 240px;
+    background: var(--sidebar);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s ease;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: var(--bg);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav button {
+    background: none;
+    border: none;
+    color: var(--text);
+    text-align: left;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: var(--primary);
+    color: var(--bg);
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.create-ws {
+    margin-top: 8px;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 14px;
+}
+
+/* ---------- Main ---------- */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Top Bar ---------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #16213e;
+    padding: 14px 24px;
+}
+
+.search input {
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    border: none;
+    outline: none;
+    background: #334155;
+    color: var(--text);
+    width: 250px;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    color: var(--bg);
+}
+
+.btn {
+    background: var(--primary);
+    color: var(--bg);
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn.ghost {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+/* ---------- Main Content ---------- */
+.content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 16px;
+    padding: 16px;
+}
+
+.card {
+    background: var(--card);
+    padding: 16px;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Kanban Board ---------- */
+.kanban {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+}
+
+.lane {
+    background: #334155;
+    border-radius: var(--radius);
+    padding: 12px;
+    min-width: 220px;
+    flex-shrink: 0;
+}
+
+.lane.dragover {
+    outline: 2px dashed var(--primary);
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.task {
+    background: var(--card);
+    padding: 8px;
+    border-radius: var(--radius);
+    cursor: grab;
+}
+
+/* ---------- Chat ---------- */
+.chat-shell {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #334155;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex: 1;
+    background: #1e293b;
+    padding: 10px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.chat-input {
+    display: flex;
+    gap: 8px;
+    background: #334155;
+    padding: 8px;
+}
+
+.chat-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    border-radius: var(--radius);
+    padding: 6px 10px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+    display: none !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    place-items: center;
+    z-index: 100;
+}
+
+.modal-backdrop.active {
+    display: grid !important;
+}
+
+.modal {
+    background: var(--card);
+    padding: 20px;
+    border-radius: var(--radius);
+    width: 320px;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ---------- Profile ---------- */
+.profile {
+    display: flex;
+    gap: 16px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    background: #334155;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* ---------- Scrollbar Styling ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 10px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -260px;
+        top: 0;
+        height: 100%;
+        z-index: 200;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 150;
+    }
+
+    .search input {
+        width: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .chat-shell {
+        height: 320px;
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .modal {
+        width: 90%;
+    }
+}
+
+.workspace-item {
+    padding: 6px 8px;
+    background: #334155;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.workspace-item:hover {
+    background: #475569;
+}
